@@ -10,14 +10,14 @@ require './models/model'
 get '/' do
   url = "https://news.ycombinator.com/news"
   data = Nokogiri::HTML(open(url))
-  @models = []
 
   articles = data.css('td.title > a')
 
   articles.each do |article|
-    new_model = Model.create(name: article.content.strip)
-    @models << new_model
+    Model.find_or_create_by(name: article.content.strip)
   end
+
+  @models = Model.last(100)
 
   erb :models
 end
