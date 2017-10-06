@@ -16,8 +16,6 @@ get '/' do
   articles.each do |article|
     Model.find_or_create_by(url: article.at_css('.title > a')[:href] ) do |new_article|
       new_article.name = article.at_css('.title > a').content
-      new_article.points = article.next.at_css('.score') ? article.next.at_css('.score').text : 0
-      new_article.user = article.next.at_css('a').content || "Anon"
     end
   end
 
