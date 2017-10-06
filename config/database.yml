@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: development
-  username: root
+  database: scrapenatra-development
+  username: ryanholdaway
   password:
   host: localhost
